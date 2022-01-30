@@ -1,0 +1,7 @@
+import pyrogram
+Unread = pyrogram.Client('notifybot', api_id=0000,api_hash='hash here', bot_token='token here')
+@TIF_Hashtag_bot.on_message(pyrogram.filters.chat('group id here') & pyrogram.filters.regex(pattern=r"^#req (.*)"))
+def notify(_, m:pyrogram.types.Message):
+    req = m.matches[0].group(1)
+    m._client.send_message('admin chat id here', f'#NewRequest\n\nUser: {m.from_user.mention(style="md")}\nBook: {req}')
+TIF_Hashtag_bot.run()
